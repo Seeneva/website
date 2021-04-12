@@ -1,0 +1,30 @@
+@charset 'utf-8'
+
+// Required by sticky footer
+.full-body
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+.full-wrapper
+    flex: 1
+
+$fa-font-path: "webfonts"
+
+@import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome'
+@import '../node_modules/@fortawesome/fontawesome-free/scss/brands'
+@import '../node_modules/@fortawesome/fontawesome-free/scss/regular'
+
+$footer-padding: 1rem 1.5rem 1rem !default
+
+$dimensions: 16 24 32 48 64 96 128 144 180 !default
+
+@import '../node_modules/bulma/bulma'
+
+.image.is-google-badge
+    height: 77px
+    width: 200px
+    img
+        height: 77px
+        width: 200px
+   

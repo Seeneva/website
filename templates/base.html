@@ -1,0 +1,76 @@
+{% import "macros/link.html" as link %}
+
+<!DOCTYPE html>
+<html>
+
+<head lang="{{ lang }}" prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8" />
+    <meta content="{{ config.extra.author }}" name="author" />
+    <meta content="{{ config.description }}" name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:site" content="@Seeneva_app">
+    <meta property="twitter:title" content="{{ config.title }}">
+    <meta property="twitter:description" content="{{ config.description }}">
+    <meta property="twitter:image" content="{{ get_url(path="img/favicon/196.png" ) | safe }}">
+    <meta property="twitter:image:alt" content="Seeneva logo">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ config.base_url | safe }}">
+    <meta property="og:title" content="{{ config.title }}">
+    <meta property="og:description" content="{{ config.description }}">
+    <meta property="og:image" content="{{ get_url(path="img/favicon/196.png" ) | safe }}">
+    <meta property="og:image:type" content="image/png">
+
+    <title>{{ config.title }} | {{ section.title }}</title>
+
+    {% for fav_size in [32, 128, 152, 167, 180, 192, 196] %}
+    <link href="{{ get_url(path="img/favicon/" ~ fav_size ~ ".png" ) | safe }}" rel="icon"
+        sizes="{{ fav_size }}x{{ fav_size }}" />
+    {% endfor %}
+
+    <link href="{{ get_url(path="main.css") | safe }}" rel="stylesheet" />
+</head>
+
+<body class="full-body">
+    <div class="full-wrapper">
+        {% block content %}{% endblock %}
+    </div>
+    <footer class="footer is-small">
+        <div class="content has-text-centered">
+            <div class="columns is-centered is-vcentered is-mobile">
+                {% for social in config.extra.socials %}
+                <div class="column is-narrow">
+                    <a href="{{ social.url | safe }}" target="_blank" rel="noopener noreferrer"
+                        title="{{ social.description }}">
+                        <span class="icon">
+                            <i class="fab fa-lg {{ social.icon }}"></i>
+                        </span>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {{ link::a_external(url="https://github.com/Seeneva/seeneva-reader-android",
+            text="<strong>Seeneva</strong>") }} is developed by <a
+                href="mailto:zellius@seeneva.app?subject=Seeneva Android app">{{ config.extra.author }}</a>
+            licensed under {{ link::a_external(url="https://www.gnu.org/licenses/gpl-3.0.en.html", text="GPLv3") }} or
+            later.
+            <br>
+            The website content licensed under {{
+            link::a_external(url="https://creativecommons.org/licenses/by-sa/4.0/",
+            text="CC BY-SA 4.0") }}.
+            {{ link::a_external(url="https://peppercarrot.com", text="Pepper & Carrot") }} is
+            licensed under {{ link::a_external(url="https://creativecommons.org/licenses/by/4.0/", text="CC BY 4.0") }}.
+            {{ link::a_external(url="https://fontawesome.com", text="Font Awesome") }} is under multiple
+            {{ link::a_external(url="https://fontawesome.com/license/free", text="licenses") }}.
+            <br>
+            Builded using {{ link::a_external(url="https://getzola.org", text="Zola") }} and {{
+            link::a_external(url="https://bulma.io", text="Bulma") }}.
+        </div>
+    </footer>
+</body>
+
+</html>

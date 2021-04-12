@@ -1,0 +1,50 @@
+# The URL the site will be built for
+base_url = "https://seeneva.app"
+
+# The site title and description; used in feeds by default.
+title = "Seeneva"
+description = "Seeneva is a fully open source smart comic book reader for Android with the ability to use OCR and TTS. Supports CBZ, CBR, CB7, CBT and PDF."
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+#languages = [{ code = "ru" }]
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = false
+
+# Whether external links are to be opened in a new tab
+# If this is true, a `rel="noopener"` will always automatically be added for security reasons
+external_links_target_blank = true
+
+# Whether to set rel="nofollow" for all external links
+external_links_no_follow = true
+
+# Whether to set rel="noreferrer" for all external links
+external_links_no_referrer = true
+
+[extra]
+# Put all your custom variables here
+author = "Sergei Solodovnikov"
+
+seeneva_package_id = "app.seeneva.reader"
+
+[[extra.socials]]
+icon = "fa-github-alt"
+url = "https://github.com/Seeneva/seeneva-reader-android"
+description = "View Seeneva repository"
+
+[[extra.socials]]
+icon = "fa-telegram-plane"
+url = "https://t.me/joinchat/VqnXJZQlTcpiMGVk"
+description = "Join Seeneva Telegram channel"
+
+[[extra.socials]]
+icon = "fa-twitter"
+url = "https://twitter.com/Seeneva_app"
+description = "Follow Seeneva Twitter"

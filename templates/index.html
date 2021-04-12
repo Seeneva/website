@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{%- block content %}
+
+{%- set icon_path = "seeneva_icon.png" %}
+{%- set icon_meta = get_image_metadata(path=icon_path) %}
+
+{%- set animation_path = "speech_balloons_flow.gif" %}
+{%- set animation_meta = get_image_metadata(path=animation_path) %}
+
+{%- set badge_google_resized = resize_image(path="../img/google-play-badge.png", width=200, op="fit_width") %}
+
+<section class="hero is-small is-info">
+    <div class="hero-body">
+        <nav class="level">
+            <div class="level-left"></div>
+            <div class="level-item columns is-centered is-vcentered is-mobile">
+                {% for social in config.extra.socials %}
+                <div class="column is-narrow">
+                    <a href="{{ social.url | safe }}" target="_blank" rel="noopener noreferrer"
+                        title="{{ social.description }}">
+                        <span class="icon">
+                            <i class="fab fa-lg {{ social.icon }}"></i>
+                        </span>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="level-right">
+                <span class="level-item icon-text">
+                    <a href="#donate" title="Make a donation">
+                        <span class="icon">
+                            <i class="far fa-lg fa-heart"></i>
+                        </span>
+                        <span class="has-text-weight-semibold">Donate</span>
+                    </a>
+                </span>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="tile is-ancestor">
+                <div class="tile is-parent is-vertical is-flex is-align-self-center">
+                    <div class="tile is-child columns is-centered is-vcentered">
+                        <div class="column is-narrow has-text-centered">
+                            <h1 class="title is-1">{{ config.title }}</h1>
+                            <h2 class="subtitle">{{ section.description }}</h2>
+                        </div>
+                        <div class="column is-narrow">
+                            <div class="is-flex is-justify-content-center">
+                                <figure class=" image is-{{ icon_meta.width }}x{{ icon_meta.height }}">
+                                    <img src="{{ get_url(path=icon_path) | safe }}" width="{{ icon_meta.width }}px"
+                                        alt="Seeneva icon">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile is-child is-flex is-justify-content-center">
+                        <figure class="image is-google-badge">
+                            <a href="https://play.google.com/store/apps/details?id={{ config.extra.seeneva_package_id }}"
+                                target="_blank" rel="noopener noreferrer" title="Seeneva Google Play page">
+                                <img src="{{ badge_google_resized | safe }}" alt="Download Seeneva from Google Play" />
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <div class="tile is-child column is-flex is-justify-content-center">
+                        <div class="card pt-2" style="width: min-content;">
+                            <div class="card-image">
+                                <figure class="image"
+                                    style="width: {{ animation_meta.width }}px; height: {{ animation_meta.height }}px ;">
+                                    <img src="{{ get_url(path=animation_path) | safe }}"
+                                        width="{{ animation_meta.width }}px" height="{{ animation_meta.height }}px"
+                                        alt="Smart speech balloons flow">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="columns is-multiline">
+        {% for feature in section.extra.features %}
+        <div class="column is-3 is-flex">
+            <div class="box">
+                <p class="title is-4 has-text-centered">{{ feature.title }}</p>
+                <div class="block">
+                    <p class="has-text-justified is-size-5 has-text-weight-normal">
+                        {{ feature.text | markdown(inline=true) | safe }}
+                    </p>
+                </div>
+                {% if feature.url %}
+                <a class="button" href="{{ feature.url | safe }}" target="_blank" rel="noopener noreferrer"
+                    title="Read more on GitHub repository">
+                    <span class="icon">
+                        <i class="fab fa-github-alt"></i>
+                    </span>
+                    <span>Read more</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="hero is-info">
+    <div class="hero-body">
+        <h1 class="title is-3 has-text-centered" id="donate">Donate</h1>
+
+        <div class="container">
+            <div class="columns is-centered is-multiline">
+                {% for donate in section.extra.donations %}
+                {%- set title_low = donate.title | lower %}
+                {%- set qr_path = title_low ~ "_qr.png" %}
+                {%- set qr_resized_size = 180 %}
+                {%- set qr_resized = resize_image(path=qr_path, width=qr_resized_size, op="fit_width" ) %}
+                <div class="column is-2">
+                    <div class="box has-background-info-light is-flex is-flex-direction-column" style="height: 100%;">
+                        <p class="title is-5 has-text-centered has-text-info-dark">{{ donate.title }}</p>
+                        <div class="block has-text-centered">
+                            <div class="is-flex is-justify-content-center">
+                                <a href="{{ get_url(path=qr_path) | safe }}" title="View '{{ donate.title }}' QR">
+                                    <figure class="image is-{{ qr_resized_size }}x{{ qr_resized_size }}">
+                                        <img src="{{ qr_resized | safe }}" alt="{{ donate.title }} donation"
+                                            width="{{ qr_resized_size }}px">
+                                    </figure>
+                                </a>
+                            </div>
+                            {% if donate.data %}
+                            <p class="is-size-7 is-italic" style="word-wrap: break-word;">
+                                {{ donate.data }}
+                            </p>
+                            {% endif %}
+                        </div>
+                        <a class="button is-fullwidth is-success" href="{{ donate.url | safe }}" target="_blank"
+                            rel="noopener noreferrer" title="Make a '{{ donate.title }}' donation"
+                            style="margin-top: auto;">Donate</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <article class="message is-warning">
+                <div class="message-body">
+                    <div class="block">
+                        <strong>Seeneva</strong> is a free and open source comic book reader without any income other
+                        than
+                        donations from users of the app.
+                    </div>
+                    <div class="block">
+                        If you like <strong>Seeneva</strong> comic book reader, you can donate to its future
+                        development. It will help to
+                        upgrade developer’s dev machine to faster
+                        implement new features or rent cloud services required to train ML models.
+                        So <strong>Seeneva</strong> will be smarter than ever!
+                    </div>
+                    <div class="block">
+                        Please remember that donations are totally voluntary. There is no any bonuses right now, except
+                        the
+                        developer appreciation. 😻
+                    </div>
+                    <div class="block">
+                        Thank you!
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock content %}
