@@ -11,10 +11,10 @@ This is a [seeneva.app](https://seeneva.app) static site generator.
     npm install
     ```
 
-3. Build site into `docs` folder:
+3. Build website:
 
    ```console
-   zola build -o docs 
+   zola build 
    ```
 
 ## License
