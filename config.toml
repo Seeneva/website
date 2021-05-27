@@ -3,7 +3,7 @@ base_url = "https://seeneva.app"
 
 # The site title and description; used in feeds by default.
 title = "Seeneva"
-description = "Seeneva is a fully open source smart comic book reader for Android with the ability to use OCR and TTS. Supports CBZ, CBR, CB7, CBT and PDF."
+description = "Seeneva is a fully open source smart comic book reader for Android with the ability to zoom speech balloons, use OCR and TTS. Supports CBZ, CBR, CB7, CBT and PDF."
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
