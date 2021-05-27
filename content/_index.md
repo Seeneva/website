@@ -3,9 +3,9 @@ title = "Android smart comic book reader"
 description = "Smart comic book reader"
 
 [[extra.features]]
-title = "Smart speech balloons flow"
-url = "https://github.com/Seeneva/seeneva-reader-android#speech-balloons-flow"
-text = "Read digital comic books on mobile devices can be difficult especially if they have small screen. ***Seeneva*** to the rescue! Built-in Machine Learning model trained to detect *speech balloons* on pages allows you easily navigate through them with a touch of a finger."
+title = "Smart speech balloons zooming"
+url = "https://github.com/Seeneva/seeneva-reader-android#speech-balloons-zooming"
+text = "Read digital comic books on mobile devices can be difficult especially if they have small screen. ***Seeneva*** to the rescue! Built-in Machine Learning model trained to detect *speech balloons* on pages allows you easily zooming and navigate through them with a touch of a finger"
 
 [[extra.features]]
 title = "Speech balloons OCR and TTS"
