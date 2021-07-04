@@ -2,6 +2,14 @@
 title = "Android smart comic book reader"
 description = "Smart comic book reader"
 
+[[extra.stores]]
+title = "Google Play"
+base_url = "https://play.google.com/store/apps/details?id="
+
+[[extra.stores]]
+title = "F-Droid"
+base_url = "https://f-droid.org/packages/"
+
 [[extra.features]]
 title = "Smart speech balloons zooming"
 url = "https://github.com/Seeneva/seeneva-reader-android#speech-balloons-zooming"
