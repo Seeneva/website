@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://seeneva.app/sitemap.xml
