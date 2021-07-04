@@ -8,8 +8,6 @@
 {%- set animation_path = "speech_balloons_flow.gif" %}
 {%- set animation_meta = get_image_metadata(path=animation_path) %}
 
-{%- set badge_google_resized = resize_image(path="../img/google-play-badge.png", width=200, op="fit_width") %}
-
 <section class="hero is-small is-info">
     <div class="hero-body">
         <nav class="level">
@@ -55,13 +53,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tile is-child is-flex is-justify-content-center">
-                        <figure class="image is-google-badge">
-                            <a href="https://play.google.com/store/apps/details?id={{ config.extra.seeneva_package_id }}"
-                                target="_blank" rel="noopener noreferrer" title="Seeneva Google Play page">
-                                <img src="{{ badge_google_resized | safe }}" alt="Download Seeneva from Google Play" />
-                            </a>
-                        </figure>
+                    <div class="tile is-child columns is-centered is-vcentered is-gapless is-multiline">
+                        {% for store in section.extra.stores %}
+                            {%- set store_url = store.base_url ~ config.extra.seeneva_package_id %}
+
+                            {%- set title_low = store.title | lower | replace(from=" ", to="-") %}
+                            {%- set badge_path = "../img/" ~ title_low ~ "-badge.png" %}
+                            {%- set badge_resized = resize_image(path=badge_path, width=200, op="fit_width") %}
+                            <div class="column is-narrow">
+                                <div class="is-flex is-justify-content-center">
+                                    <figure class="image is-store-badge">
+                                        <a href="{{ store_url | safe }}"
+                                            target="_blank" rel="noopener noreferrer" title="Seeneva {{ store.title }} page">
+                                            <img src="{{ badge_resized | safe }}" alt="Download Seeneva from {{ store.title }}" />
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="tile is-parent">
